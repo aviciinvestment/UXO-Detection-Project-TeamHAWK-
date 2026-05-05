@@ -4,7 +4,6 @@
 
 This system performs real-time detection of unexploded ordnance (UXO) using a YOLOv11n model trained on the CTX-UXO dataset and deployed as an INT8-quantized TensorFlow Lite model for Android devices. The system is designed for field use, running fully offline with low latency on mobile hardware.
 
----
 
 ## 2. Problem Definition
 
@@ -19,7 +18,6 @@ This system performs real-time detection of unexploded ordnance (UXO) using a YO
 - Real-time responsiveness  
 - Compatibility with mobile CPU execution  
 
----
 
 ## 3. Dataset
 
@@ -32,23 +30,33 @@ This system performs real-time detection of unexploded ordnance (UXO) using a YO
 
 The dataset is pre-structured for object detection:
 
+
 dataset/
+
 ├── train/
+
 │ ├── images/
+
 │ └── labels/
+
 ├── val/
+
 │ ├── images/
+
 │ └── labels/
+
 ├── test/
+
 │ ├── images/
+
 │ └── labels/
+
 
 - **Annotations:** YOLO format  
     `(class_id, x_center, y_center, width, height)` (normalized)
 
 No restructuring or relabeling was required.
 
----
 
 ## 4. Data Preprocessing
 
@@ -61,7 +69,6 @@ Preprocessing is handled internally by the training pipeline:
     - Random scaling  
     - Small-angle rotation  
 
----
 
 ## 5. Model Architecture
 
@@ -69,7 +76,6 @@ Preprocessing is handled internally by the training pipeline:
 
 YOLOv11n is a lightweight object detection model optimized for edge deployment. It uses a compact backbone and multi-scale detection heads to balance detection accuracy and computational efficiency.
 
----
 
 ## 6. Training Configuration
 
@@ -84,7 +90,6 @@ YOLOv11n is a lightweight object detection model optimized for edge deployment. 
 
 Training uses the dataset splits directly via `data.yaml`.
 
----
 
 ## 7. Evaluation
 
@@ -107,7 +112,6 @@ Evaluation was performed on the validation and test sets.
 - Missed detections in cluttered scenes  
 - Confusion between visually similar UXO types  
 
----
 
 ## 8. Model Optimization
 
@@ -122,7 +126,6 @@ YOLO (.pt) → TensorFlow → TFLite (.tflite, INT8)
 - Faster inference  
 - Slight drop in precision  
 
----
 
 ## 9. Deployment Architecture
 
@@ -137,7 +140,6 @@ YOLO (.pt) → TensorFlow → TFLite (.tflite, INT8)
 - Runs fully offline  
 - No API or network dependency  
 
----
 
 ## 10. Environment Setup
 
